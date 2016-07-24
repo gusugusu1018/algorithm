@@ -1,38 +1,35 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace bubblesort
 {
 		class MainClass
 		{
+				public static List<int> data = new List<int>();
 				public static void Main() 
 				{
+						inputdata();
+						bubblesort();
+						outputdata();
+				}
+				public static void bubblesort()
+				{
 						int start,end,tmp;
-						IOarray data = new IOarray();
-						data.inputfile();
-
-						for (start = 1; start < data.n; start++)
+						for (start = 1; start < data.Count; start++)
 						{
-								for (end = data.n-1; end >= start; end--)
+								for (end = data.Count-1; end >= start; end--)
 								{
-										if (data.nums[end - 1] > data.nums[end])
+										if (data[end - 1] > data[end])
 										{
-												tmp = data.nums[end - 1];
-												data.nums[end - 1] = data.nums[end];
-												data.nums[end] = tmp;
+												tmp = data[end - 1];
+												data[end - 1] = data[end];
+												data[end] = tmp;
 										}
 								}
 						}
-						data.outputfile();
 				}
-		}
-
-		class IOarray
-		{
-				public int[] nums = new int[32];
-				private int i;
-				public int n;
-				public void inputfile ()
+				public static void inputdata()
 				{
 						try 
 						{
@@ -41,13 +38,10 @@ namespace bubblesort
 										string Line;
 										while((Line=sr.ReadLine()) != null)
 										{
-												nums[n]=int.Parse(Line);
-												n++;
+												data.Add(int.Parse(Line));
 										}
-										Console.WriteLine("---input---");
-										for (i=0; i<n; i++){
-												Console.WriteLine(nums[i]);
-										}
+										Console.WriteLine("---inputi data---");
+										Console.WriteLine(string.Join(",", data));
 								}
 						}
 						catch (Exception e) 
@@ -56,13 +50,10 @@ namespace bubblesort
 								Console.WriteLine(e.Message);
 						}
 				}
-				public void outputfile ()
+				public static void outputdata()
 				{
-						Console.WriteLine("---output---");
-						for (i=0; i<n; i++){
-								Console.WriteLine(nums[i]);
-						}
+						Console.WriteLine("---output data---");
+						Console.WriteLine(string.Join(",", data));
 				}
 		}
 }
-
