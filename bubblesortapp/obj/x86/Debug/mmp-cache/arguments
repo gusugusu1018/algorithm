@@ -1,0 +1,24 @@
+# Version: 2.8.1.4 (c7sr0: 3cf8aae)
+# [first argument, ignore] # /Users/yujimac/Projects/bubblesortapp/mmp.exe
+mmp.exe \
+	/verbose \
+	/debug \
+	/output:/Users/yujimac/Projects/bubblesortapp/bin/Debug/ \
+	/name:bubblesortapp \
+	/profile:Xamarin.Mac \
+	/arch:x86_64 \
+	--http-message-handler=HttpClientHandler \
+	/minos=10.11 \
+	/sgen \
+	/new-refcount \
+	--tls-provider=default \
+	/nolink \
+	/assembly:/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/Xamarin.Mac/System.dll \
+	/assembly:/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/Xamarin.Mac/System.Core.dll \
+	/assembly:/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/Xamarin.Mac/Xamarin.Mac.dll \
+	/assembly:/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/Xamarin.Mac/mscorlib.dll \
+	/Users/yujimac/Projects/bubblesortapp/bin/Debug/bubblesortapp.exe \
+	/sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--cache \
+	/Users/yujimac/Projects/bubblesortapp/obj/x86/Debug/mmp-cache \
