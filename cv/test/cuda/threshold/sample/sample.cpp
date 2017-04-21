@@ -6,7 +6,7 @@ int main (int argc, char* argv[])
 {
     try
     {
-        cv::Mat src_host = cv::imread("../Webcam/kinen.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+        cv::Mat src_host = cv::imread("../../../Pictures/move1.jpg", CV_LOAD_IMAGE_GRAYSCALE);
         cv::gpu::GpuMat dst, src;
         src.upload(src_host);
 
