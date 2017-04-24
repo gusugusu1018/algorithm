@@ -10,7 +10,7 @@ int main(int argc, const char* argv[])
 	cv::Mat dst;
 	cv::gpu::GpuMat gpusrc, gpudst;
 
-	const int Count = 100000;
+	const int Count = 100;
 
 	// CPU
 	cv::TickMeter cpumeter,gpumeter;
