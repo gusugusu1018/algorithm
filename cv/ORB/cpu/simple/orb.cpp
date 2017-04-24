@@ -13,8 +13,8 @@ using namespace cv;
 
 int main(int argc, char** argv )
 {
-  Mat img1 = imread("../../Pictures/move1.jpg");
-  Mat img2 = imread("../../Pictures/move2.jpg");
+  Mat img1 = imread("../../../Pictures/move1.jpg");
+  Mat img2 = imread("../../../Pictures/move2.jpg");
 
   // Creat Object of FeatureDetector
   Ptr<FeatureDetector> detector = FeatureDetector::create("ORB");
