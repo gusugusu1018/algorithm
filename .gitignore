@@ -31,3 +31,8 @@
 *.out
 *.app
 
+# build
+build/
+
+# add
+*.swp
