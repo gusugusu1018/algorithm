@@ -5,7 +5,7 @@
 int main (int argc, char** argv)
 {
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
-  if (pcl::io::loadPCDFile<pcl::PointXYZ>("../src.pcd", *cloud) == -1) //* load the file
+  if (pcl::io::loadPCDFile<pcl::PointXYZ>("../../data/src.pcd", *cloud) == -1) //* load the file
   {
     std::cout << "Couldn't read file src.pcd " << std::endl;
     return -1;
