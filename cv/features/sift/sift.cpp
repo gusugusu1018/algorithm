@@ -1,12 +1,25 @@
-//#include "opencv2/ts/ts.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/imgproc/imgproc_c.h"
-#include "opencv2/features2d/features2d.hpp"
-#include "opencv2/highgui/highgui.hpp"
 #include <iostream>
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/features2d/features2d.hpp>
+#include <opencv2/xfeatures2d.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
-void features(cv::Mat &target, cv::Mat &scene, cv::Mat &t_gray, cv::Mat &s_gray, cv::Mat &dst, int num)
+int main(void)
 {
+/*
+    cv::Mat target = cv::imread("../../images/redbull_target.jpg");
+    cv::Mat scene = cv::imread("../../images/redbull_scene.jpg");
+    cv::Mat t_gray = cv::imread("../../images/redbull_target.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat s_gray = cv::imread("../../images/redbull_scene.jpg", cv::IMREAD_GRAYSCALE);
+*/
+    cv::Mat target = cv::imread("../../images/genmai_target.jpg");
+    cv::Mat scene = cv::imread("../../images/genmai_scene.jpg");
+    cv::Mat t_gray = cv::imread("../../images/genmai_target.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat s_gray = cv::imread("../../images/genmai_scene.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat dst;
+
     // 時間計算のための周波数
     double f = 1000.0 / cv::getTickFrequency();
 
@@ -20,36 +33,9 @@ void features(cv::Mat &target, cv::Mat &scene, cv::Mat &t_gray, cv::Mat &s_gray,
     cv::Ptr<cv::Feature2D> feature;
     std::stringstream ss;
 
-    switch (num)
-    {
-    case 0:
-        feature = cv::xfeatures2d::SIFT::create();
-        ss << "SIFT";
-        break;
-    case 1:
-        feature = cv::xfeatures2d::SURF::create();
-        ss << "SURF";
-        break;
-    case 2:
-        feature = cv::ORB::create();
-        ss << "ORB";
-        break;
-    case 3:
-        feature = cv::AKAZE::create();
-        ss << "A-KAZE";
-        break;
-    case 4:
-        feature = cv::BRISK::create();
-        ss << "BRISK";
-        break;
-    case 5:
-        feature = cv::KAZE::create();
-        ss << "KAZE";
-        break;
-    default:
-        break;
-    }
-    std::cout << "--- 計測（" << ss.str() << "） ---" << std::endl;
+    feature = cv::xfeatures2d::SIFT::create();
+    ss << "SIFT";
+    std::cout << "--- 計測（SIFT ） ---" << std::endl;
 
 
     //******************************
@@ -66,7 +52,7 @@ void features(cv::Mat &target, cv::Mat &scene, cv::Mat &t_gray, cv::Mat &s_gray,
 
     if (desc2.rows == 0){
         std::cout << "WARNING: 特徴点検出できず" << std::endl;
-        return;
+        return 1;
     }
 
     //*******************
@@ -149,7 +135,7 @@ void features(cv::Mat &target, cv::Mat &scene, cv::Mat &t_gray, cv::Mat &s_gray,
     }
 
 
-
+    double beta = 1.2;
     cv::putText(dst, ss.str(), cv::Point(10, target.rows + 40), cv::FONT_HERSHEY_SIMPLEX, beta-.1, cv::Scalar(255, 255, 255), 1, CV_AA);
     ss.str("");
     ss << "Detection & Description";
@@ -200,4 +186,7 @@ void features(cv::Mat &target, cv::Mat &scene, cv::Mat &t_gray, cv::Mat &s_gray,
     std::cout << "target match_points: " << match_point1.size() << std::endl;
     std::cout << "scene match_points: " << match_point2.size() << std::endl;
 
+    cv::imshow("dst",dst);
+    cv::waitKey(0);
+    return 0;
 }
