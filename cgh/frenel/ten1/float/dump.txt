@@ -1,0 +1,1122 @@
+
+cgh.out:     ファイル形式 elf64-x86-64
+
+
+セクション .init の逆アセンブル:
+
+0000000000400740 <_init>:
+  400740:	48 83 ec 08          	sub    $0x8,%rsp
+  400744:	48 8b 05 ad 18 20 00 	mov    0x2018ad(%rip),%rax        # 601ff8 <_DYNAMIC+0x1e0>
+  40074b:	48 85 c0             	test   %rax,%rax
+  40074e:	74 05                	je     400755 <_init+0x15>
+  400750:	e8 eb 00 00 00       	callq  400840 <fwrite@plt+0x10>
+  400755:	48 83 c4 08          	add    $0x8,%rsp
+  400759:	c3                   	retq   
+
+セクション .plt の逆アセンブル:
+
+0000000000400760 <free@plt-0x10>:
+  400760:	ff 35 a2 18 20 00    	pushq  0x2018a2(%rip)        # 602008 <_GLOBAL_OFFSET_TABLE_+0x8>
+  400766:	ff 25 a4 18 20 00    	jmpq   *0x2018a4(%rip)        # 602010 <_GLOBAL_OFFSET_TABLE_+0x10>
+  40076c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000400770 <free@plt>:
+  400770:	ff 25 a2 18 20 00    	jmpq   *0x2018a2(%rip)        # 602018 <_GLOBAL_OFFSET_TABLE_+0x18>
+  400776:	68 00 00 00 00       	pushq  $0x0
+  40077b:	e9 e0 ff ff ff       	jmpq   400760 <_init+0x20>
+
+0000000000400780 <puts@plt>:
+  400780:	ff 25 9a 18 20 00    	jmpq   *0x20189a(%rip)        # 602020 <_GLOBAL_OFFSET_TABLE_+0x20>
+  400786:	68 01 00 00 00       	pushq  $0x1
+  40078b:	e9 d0 ff ff ff       	jmpq   400760 <_init+0x20>
+
+0000000000400790 <fread@plt>:
+  400790:	ff 25 92 18 20 00    	jmpq   *0x201892(%rip)        # 602028 <_GLOBAL_OFFSET_TABLE_+0x28>
+  400796:	68 02 00 00 00       	pushq  $0x2
+  40079b:	e9 c0 ff ff ff       	jmpq   400760 <_init+0x20>
+
+00000000004007a0 <fclose@plt>:
+  4007a0:	ff 25 8a 18 20 00    	jmpq   *0x20188a(%rip)        # 602030 <_GLOBAL_OFFSET_TABLE_+0x30>
+  4007a6:	68 03 00 00 00       	pushq  $0x3
+  4007ab:	e9 b0 ff ff ff       	jmpq   400760 <_init+0x20>
+
+00000000004007b0 <__stack_chk_fail@plt>:
+  4007b0:	ff 25 82 18 20 00    	jmpq   *0x201882(%rip)        # 602038 <_GLOBAL_OFFSET_TABLE_+0x38>
+  4007b6:	68 04 00 00 00       	pushq  $0x4
+  4007bb:	e9 a0 ff ff ff       	jmpq   400760 <_init+0x20>
+
+00000000004007c0 <cos@plt>:
+  4007c0:	ff 25 7a 18 20 00    	jmpq   *0x20187a(%rip)        # 602040 <_GLOBAL_OFFSET_TABLE_+0x40>
+  4007c6:	68 05 00 00 00       	pushq  $0x5
+  4007cb:	e9 90 ff ff ff       	jmpq   400760 <_init+0x20>
+
+00000000004007d0 <__libc_start_main@plt>:
+  4007d0:	ff 25 72 18 20 00    	jmpq   *0x201872(%rip)        # 602048 <_GLOBAL_OFFSET_TABLE_+0x48>
+  4007d6:	68 06 00 00 00       	pushq  $0x6
+  4007db:	e9 80 ff ff ff       	jmpq   400760 <_init+0x20>
+
+00000000004007e0 <calloc@plt>:
+  4007e0:	ff 25 6a 18 20 00    	jmpq   *0x20186a(%rip)        # 602050 <_GLOBAL_OFFSET_TABLE_+0x50>
+  4007e6:	68 07 00 00 00       	pushq  $0x7
+  4007eb:	e9 70 ff ff ff       	jmpq   400760 <_init+0x20>
+
+00000000004007f0 <malloc@plt>:
+  4007f0:	ff 25 62 18 20 00    	jmpq   *0x201862(%rip)        # 602058 <_GLOBAL_OFFSET_TABLE_+0x58>
+  4007f6:	68 08 00 00 00       	pushq  $0x8
+  4007fb:	e9 60 ff ff ff       	jmpq   400760 <_init+0x20>
+
+0000000000400800 <__printf_chk@plt>:
+  400800:	ff 25 5a 18 20 00    	jmpq   *0x20185a(%rip)        # 602060 <_GLOBAL_OFFSET_TABLE_+0x60>
+  400806:	68 09 00 00 00       	pushq  $0x9
+  40080b:	e9 50 ff ff ff       	jmpq   400760 <_init+0x20>
+
+0000000000400810 <fopen@plt>:
+  400810:	ff 25 52 18 20 00    	jmpq   *0x201852(%rip)        # 602068 <_GLOBAL_OFFSET_TABLE_+0x68>
+  400816:	68 0a 00 00 00       	pushq  $0xa
+  40081b:	e9 40 ff ff ff       	jmpq   400760 <_init+0x20>
+
+0000000000400820 <getrusage@plt>:
+  400820:	ff 25 4a 18 20 00    	jmpq   *0x20184a(%rip)        # 602070 <_GLOBAL_OFFSET_TABLE_+0x70>
+  400826:	68 0b 00 00 00       	pushq  $0xb
+  40082b:	e9 30 ff ff ff       	jmpq   400760 <_init+0x20>
+
+0000000000400830 <fwrite@plt>:
+  400830:	ff 25 42 18 20 00    	jmpq   *0x201842(%rip)        # 602078 <_GLOBAL_OFFSET_TABLE_+0x78>
+  400836:	68 0c 00 00 00       	pushq  $0xc
+  40083b:	e9 20 ff ff ff       	jmpq   400760 <_init+0x20>
+
+セクション .plt.got の逆アセンブル:
+
+0000000000400840 <.plt.got>:
+  400840:	ff 25 b2 17 20 00    	jmpq   *0x2017b2(%rip)        # 601ff8 <_DYNAMIC+0x1e0>
+  400846:	66 90                	xchg   %ax,%ax
+
+セクション .text の逆アセンブル:
+
+0000000000400850 <main>:
+	r_ja=(dx*dx+dy*dy)/zj;
+
+	return r_ja;
+}
+
+int main(){
+  400850:	55                   	push   %rbp
+
+	for(i=0;i<256;i++){
+		RGBQuad[i].rgbBlue                =i;
+		RGBQuad[i].rgbGreen               =i;
+		RGBQuad[i].rgbRed                 =i;
+		RGBQuad[i].rgbReserved            =0;
+  400851:	66 0f ef db          	pxor   %xmm3,%xmm3
+	RGBQUAD             RGBQuad[256];
+
+	FILE *fp;
+	int i,j,k;
+
+	BmpFileHeader.bfType                =19778;
+  400855:	b9 42 4d 00 00       	mov    $0x4d42,%ecx
+	BmpFileHeader.bfSize                =14+40+1024+(WIDTH*HEIGHT);
+	BmpFileHeader.bfReserved1           =0;
+  40085a:	31 f6                	xor    %esi,%esi
+	BmpFileHeader.bfReserved2           =0;
+  40085c:	31 ff                	xor    %edi,%edi
+	r_ja=(dx*dx+dy*dy)/zj;
+
+	return r_ja;
+}
+
+int main(){
+  40085e:	48 89 e5             	mov    %rsp,%rbp
+  400861:	41 57                	push   %r15
+  400863:	41 56                	push   %r14
+  400865:	41 55                	push   %r13
+  400867:	41 54                	push   %r12
+	BmpFileHeader.bf0ffBits             =14+40+1024;
+
+	BmpInfoHeader.biSize                =40;
+	BmpInfoHeader.biWidth               =WIDTH;
+	BmpInfoHeader.biHeight              =HEIGHT;
+	BmpInfoHeader.biPlanes              =1;
+  400869:	41 b8 01 00 00 00    	mov    $0x1,%r8d
+	r_ja=(dx*dx+dy*dy)/zj;
+
+	return r_ja;
+}
+
+int main(){
+  40086f:	53                   	push   %rbx
+
+	BmpInfoHeader.biSize                =40;
+	BmpInfoHeader.biWidth               =WIDTH;
+	BmpInfoHeader.biHeight              =HEIGHT;
+	BmpInfoHeader.biPlanes              =1;
+	BmpInfoHeader.biBitCount            =8;     //256階調
+  400870:	41 b9 08 00 00 00    	mov    $0x8,%r9d
+	r_ja=(dx*dx+dy*dy)/zj;
+
+	return r_ja;
+}
+
+int main(){
+  400876:	48 81 ec 48 05 00 00 	sub    $0x548,%rsp
+	RGBQUAD             RGBQuad[256];
+
+	FILE *fp;
+	int i,j,k;
+
+	BmpFileHeader.bfType                =19778;
+  40087d:	66 89 8d f0 fa ff ff 	mov    %cx,-0x510(%rbp)
+	BmpFileHeader.bfSize                =14+40+1024+(WIDTH*HEIGHT);
+  400884:	c7 85 f2 fa ff ff 36 	movl   $0x1fa836,-0x50e(%rbp)
+  40088b:	a8 1f 00 
+	r_ja=(dx*dx+dy*dy)/zj;
+
+	return r_ja;
+}
+
+int main(){
+  40088e:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  400895:	00 00 
+  400897:	48 89 45 c8          	mov    %rax,-0x38(%rbp)
+  40089b:	31 c0                	xor    %eax,%eax
+  40089d:	48 8d 85 c0 fb ff ff 	lea    -0x440(%rbp),%rax
+	BmpInfoHeader.biCompression         =0L;
+	BmpInfoHeader.biSizeImage           =0L;
+	BmpInfoHeader.biXPelsPerMeter       =0L;
+	BmpInfoHeader.biYPelsPerMeter       =0L;
+	BmpInfoHeader.biCirUsed             =0L;
+	BmpInfoHeader.biCirImportant        =0L;
+  4008a4:	66 0f 6f 15 e4 08 00 	movdqa 0x8e4(%rip),%xmm2        # 401190 <_IO_stdin_used+0x90>
+  4008ab:	00 
+	FILE *fp;
+	int i,j,k;
+
+	BmpFileHeader.bfType                =19778;
+	BmpFileHeader.bfSize                =14+40+1024+(WIDTH*HEIGHT);
+	BmpFileHeader.bfReserved1           =0;
+  4008ac:	66 89 b5 f6 fa ff ff 	mov    %si,-0x50a(%rbp)
+	BmpFileHeader.bfReserved2           =0;
+  4008b3:	66 89 bd f8 fa ff ff 	mov    %di,-0x508(%rbp)
+  4008ba:	48 89 c2             	mov    %rax,%rdx
+  4008bd:	66 44 0f 6f 05 da 08 	movdqa 0x8da(%rip),%xmm8        # 4011a0 <_IO_stdin_used+0xa0>
+  4008c4:	00 00 
+	BmpFileHeader.bf0ffBits             =14+40+1024;
+  4008c6:	c7 85 fa fa ff ff 36 	movl   $0x436,-0x506(%rbp)
+  4008cd:	04 00 00 
+
+	BmpInfoHeader.biSize                =40;
+  4008d0:	c7 85 00 fb ff ff 28 	movl   $0x28,-0x500(%rbp)
+  4008d7:	00 00 00 
+  4008da:	48 81 c2 00 04 00 00 	add    $0x400,%rdx
+  4008e1:	66 0f 6f 3d c7 08 00 	movdqa 0x8c7(%rip),%xmm7        # 4011b0 <_IO_stdin_used+0xb0>
+  4008e8:	00 
+	BmpInfoHeader.biWidth               =WIDTH;
+  4008e9:	c7 85 04 fb ff ff 80 	movl   $0x780,-0x4fc(%rbp)
+  4008f0:	07 00 00 
+	BmpInfoHeader.biHeight              =HEIGHT;
+  4008f3:	c7 85 08 fb ff ff 38 	movl   $0x438,-0x4f8(%rbp)
+  4008fa:	04 00 00 
+  4008fd:	66 0f 6f 35 bb 08 00 	movdqa 0x8bb(%rip),%xmm6        # 4011c0 <_IO_stdin_used+0xc0>
+  400904:	00 
+	BmpInfoHeader.biPlanes              =1;
+  400905:	66 44 89 85 0c fb ff 	mov    %r8w,-0x4f4(%rbp)
+  40090c:	ff 
+	BmpInfoHeader.biBitCount            =8;     //256階調
+  40090d:	66 44 89 8d 0e fb ff 	mov    %r9w,-0x4f2(%rbp)
+  400914:	ff 
+  400915:	66 0f 6f 2d b3 08 00 	movdqa 0x8b3(%rip),%xmm5        # 4011d0 <_IO_stdin_used+0xd0>
+  40091c:	00 
+	BmpInfoHeader.biCompression         =0L;
+  40091d:	c7 85 10 fb ff ff 00 	movl   $0x0,-0x4f0(%rbp)
+  400924:	00 00 00 
+	BmpInfoHeader.biSizeImage           =0L;
+  400927:	c7 85 14 fb ff ff 00 	movl   $0x0,-0x4ec(%rbp)
+  40092e:	00 00 00 
+  400931:	66 0f 6f 25 a7 08 00 	movdqa 0x8a7(%rip),%xmm4        # 4011e0 <_IO_stdin_used+0xe0>
+  400938:	00 
+	BmpInfoHeader.biXPelsPerMeter       =0L;
+  400939:	c7 85 18 fb ff ff 00 	movl   $0x0,-0x4e8(%rbp)
+  400940:	00 00 00 
+	BmpInfoHeader.biYPelsPerMeter       =0L;
+  400943:	c7 85 1c fb ff ff 00 	movl   $0x0,-0x4e4(%rbp)
+  40094a:	00 00 00 
+	BmpInfoHeader.biCirUsed             =0L;
+  40094d:	c7 85 20 fb ff ff 00 	movl   $0x0,-0x4e0(%rbp)
+  400954:	00 00 00 
+	BmpInfoHeader.biCirImportant        =0L;
+  400957:	c7 85 24 fb ff ff 00 	movl   $0x0,-0x4dc(%rbp)
+  40095e:	00 00 00 
+
+	for(i=0;i<256;i++){
+		RGBQuad[i].rgbBlue                =i;
+  400961:	66 0f 6f c2          	movdqa %xmm2,%xmm0
+  400965:	66 44 0f 6f e2       	movdqa %xmm2,%xmm12
+  40096a:	66 0f 6f ca          	movdqa %xmm2,%xmm1
+  40096e:	48 83 c0 40          	add    $0x40,%rax
+  400972:	66 0f fe c7          	paddd  %xmm7,%xmm0
+  400976:	66 44 0f 61 e0       	punpcklwd %xmm0,%xmm12
+  40097b:	66 0f 69 c8          	punpckhwd %xmm0,%xmm1
+  40097f:	66 44 0f 6f d2       	movdqa %xmm2,%xmm10
+  400984:	66 41 0f 6f c4       	movdqa %xmm12,%xmm0
+  400989:	66 44 0f fe d5       	paddd  %xmm5,%xmm10
+  40098e:	66 45 0f 6f cc       	movdqa %xmm12,%xmm9
+  400993:	66 0f 61 c1          	punpcklwd %xmm1,%xmm0
+  400997:	66 44 0f 69 c9       	punpckhwd %xmm1,%xmm9
+  40099c:	66 0f 6f ca          	movdqa %xmm2,%xmm1
+  4009a0:	66 41 0f fe d0       	paddd  %xmm8,%xmm2
+  4009a5:	66 0f fe ce          	paddd  %xmm6,%xmm1
+  4009a9:	66 41 0f 61 c1       	punpcklwd %xmm9,%xmm0
+  4009ae:	66 44 0f 6f c9       	movdqa %xmm1,%xmm9
+  4009b3:	66 41 0f 61 ca       	punpcklwd %xmm10,%xmm1
+  4009b8:	66 45 0f 69 ca       	punpckhwd %xmm10,%xmm9
+  4009bd:	66 44 0f 6f d1       	movdqa %xmm1,%xmm10
+  4009c2:	66 0f db c4          	pand   %xmm4,%xmm0
+  4009c6:	66 45 0f 69 d1       	punpckhwd %xmm9,%xmm10
+  4009cb:	66 41 0f 61 c9       	punpcklwd %xmm9,%xmm1
+  4009d0:	66 41 0f 61 ca       	punpcklwd %xmm10,%xmm1
+  4009d5:	66 0f db cc          	pand   %xmm4,%xmm1
+  4009d9:	66 0f 67 c1          	packuswb %xmm1,%xmm0
+		RGBQuad[i].rgbGreen               =i;
+		RGBQuad[i].rgbRed                 =i;
+		RGBQuad[i].rgbReserved            =0;
+  4009dd:	66 44 0f 6f c8       	movdqa %xmm0,%xmm9
+  4009e2:	66 44 0f 6f d0       	movdqa %xmm0,%xmm10
+  4009e7:	66 0f 6f c8          	movdqa %xmm0,%xmm1
+  4009eb:	66 44 0f 60 c8       	punpcklbw %xmm0,%xmm9
+  4009f0:	66 44 0f 60 d3       	punpcklbw %xmm3,%xmm10
+  4009f5:	66 0f 68 c8          	punpckhbw %xmm0,%xmm1
+  4009f9:	66 45 0f 6f d9       	movdqa %xmm9,%xmm11
+  4009fe:	66 0f 68 c3          	punpckhbw %xmm3,%xmm0
+  400a02:	66 45 0f 68 ca       	punpckhbw %xmm10,%xmm9
+  400a07:	66 45 0f 60 da       	punpcklbw %xmm10,%xmm11
+  400a0c:	44 0f 29 48 d0       	movaps %xmm9,-0x30(%rax)
+  400a11:	66 44 0f 6f c9       	movdqa %xmm1,%xmm9
+  400a16:	66 0f 68 c8          	punpckhbw %xmm0,%xmm1
+  400a1a:	66 44 0f 60 c8       	punpcklbw %xmm0,%xmm9
+  400a1f:	44 0f 29 58 c0       	movaps %xmm11,-0x40(%rax)
+  400a24:	44 0f 29 48 e0       	movaps %xmm9,-0x20(%rax)
+  400a29:	0f 29 48 f0          	movaps %xmm1,-0x10(%rax)
+  400a2d:	48 39 c2             	cmp    %rax,%rdx
+  400a30:	0f 85 2b ff ff ff    	jne    400961 <main+0x111>
+	}
+
+	fp=fopen("../../../data/ten1.3d","rb");
+  400a36:	be 04 11 40 00       	mov    $0x401104,%esi
+  400a3b:	bf 07 11 40 00       	mov    $0x401107,%edi
+  400a40:	e8 cb fd ff ff       	callq  400810 <fopen@plt>
+	if(fp==NULL){
+  400a45:	48 85 c0             	test   %rax,%rax
+		RGBQuad[i].rgbGreen               =i;
+		RGBQuad[i].rgbRed                 =i;
+		RGBQuad[i].rgbReserved            =0;
+	}
+
+	fp=fopen("../../../data/ten1.3d","rb");
+  400a48:	48 89 c3             	mov    %rax,%rbx
+	if(fp==NULL){
+  400a4b:	75 0a                	jne    400a57 <main+0x207>
+}
+
+__fortify_function int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+  400a4d:	bf 1d 11 40 00       	mov    $0x40111d,%edi
+  400a52:	e8 29 fd ff ff       	callq  400780 <puts@plt>
+	return __fread_chk (__ptr, __bos0 (__ptr), __size, __n, __stream);
+
+      if (__size * __n > __bos0 (__ptr))
+	return __fread_chk_warn (__ptr, __bos0 (__ptr), __size, __n, __stream);
+    }
+  return __fread_alias (__ptr, __size, __n, __stream);
+  400a57:	48 8d bd e0 fa ff ff 	lea    -0x520(%rbp),%rdi
+  400a5e:	ba 01 00 00 00       	mov    $0x1,%edx
+  400a63:	48 89 d9             	mov    %rbx,%rcx
+  400a66:	be 04 00 00 00       	mov    $0x4,%esi
+	int y[points];
+	float z[points];
+
+	int x_buf,y_buf,z_buf;
+
+	for(i=0;i<points;i++){
+  400a6b:	45 31 e4             	xor    %r12d,%r12d
+  400a6e:	e8 1d fd ff ff       	callq  400790 <fread@plt>
+		printf("Can't open file\n");
+	}
+
+	fread(&points,sizeof(int),1,fp);
+
+	int x[points];
+  400a73:	48 63 85 e0 fa ff ff 	movslq -0x520(%rbp),%rax
+  400a7a:	48 89 c2             	mov    %rax,%rdx
+  400a7d:	48 8d 04 85 12 00 00 	lea    0x12(,%rax,4),%rax
+  400a84:	00 
+  400a85:	48 c1 e8 04          	shr    $0x4,%rax
+  400a89:	48 c1 e0 04          	shl    $0x4,%rax
+  400a8d:	48 29 c4             	sub    %rax,%rsp
+  400a90:	48 89 a5 a8 fa ff ff 	mov    %rsp,-0x558(%rbp)
+	int y[points];
+  400a97:	48 29 c4             	sub    %rax,%rsp
+  400a9a:	48 89 a5 a0 fa ff ff 	mov    %rsp,-0x560(%rbp)
+	float z[points];
+  400aa1:	48 29 c4             	sub    %rax,%rsp
+
+	int x_buf,y_buf,z_buf;
+
+	for(i=0;i<points;i++){
+  400aa4:	85 d2                	test   %edx,%edx
+
+	fread(&points,sizeof(int),1,fp);
+
+	int x[points];
+	int y[points];
+	float z[points];
+  400aa6:	48 89 a5 98 fa ff ff 	mov    %rsp,-0x568(%rbp)
+
+	int x_buf,y_buf,z_buf;
+
+	for(i=0;i<points;i++){
+  400aad:	0f 8e bb 00 00 00    	jle    400b6e <main+0x31e>
+  400ab3:	48 8d bd e4 fa ff ff 	lea    -0x51c(%rbp),%rdi
+  400aba:	48 89 d9             	mov    %rbx,%rcx
+  400abd:	ba 01 00 00 00       	mov    $0x1,%edx
+  400ac2:	be 04 00 00 00       	mov    $0x4,%esi
+  400ac7:	e8 c4 fc ff ff       	callq  400790 <fread@plt>
+  400acc:	48 8d bd e8 fa ff ff 	lea    -0x518(%rbp),%rdi
+  400ad3:	48 89 d9             	mov    %rbx,%rcx
+  400ad6:	ba 01 00 00 00       	mov    $0x1,%edx
+  400adb:	be 04 00 00 00       	mov    $0x4,%esi
+  400ae0:	e8 ab fc ff ff       	callq  400790 <fread@plt>
+  400ae5:	48 8d bd ec fa ff ff 	lea    -0x514(%rbp),%rdi
+  400aec:	ba 01 00 00 00       	mov    $0x1,%edx
+  400af1:	be 04 00 00 00       	mov    $0x4,%esi
+  400af6:	48 89 d9             	mov    %rbx,%rcx
+  400af9:	e8 92 fc ff ff       	callq  400790 <fread@plt>
+		fread(&y_buf,sizeof(int),1,fp);
+		fread(&z_buf,sizeof(int),1,fp);
+
+		x[i]=x_buf*40+960;
+		y[i]=y_buf*40+540;
+		z[i]=((float)z_buf)*40+100000.0;
+  400afe:	66 0f ef c0          	pxor   %xmm0,%xmm0
+	for(i=0;i<points;i++){
+		fread(&x_buf,sizeof(int),1,fp);
+		fread(&y_buf,sizeof(int),1,fp);
+		fread(&z_buf,sizeof(int),1,fp);
+
+		x[i]=x_buf*40+960;
+  400b02:	8b 95 e4 fa ff ff    	mov    -0x51c(%rbp),%edx
+  400b08:	48 8b b5 a8 fa ff ff 	mov    -0x558(%rbp),%rsi
+  400b0f:	49 63 c4             	movslq %r12d,%rax
+	int y[points];
+	float z[points];
+
+	int x_buf,y_buf,z_buf;
+
+	for(i=0;i<points;i++){
+  400b12:	41 83 c4 01          	add    $0x1,%r12d
+  400b16:	44 39 a5 e0 fa ff ff 	cmp    %r12d,-0x520(%rbp)
+		fread(&y_buf,sizeof(int),1,fp);
+		fread(&z_buf,sizeof(int),1,fp);
+
+		x[i]=x_buf*40+960;
+		y[i]=y_buf*40+540;
+		z[i]=((float)z_buf)*40+100000.0;
+  400b1d:	f3 0f 2a 85 ec fa ff 	cvtsi2ssl -0x514(%rbp),%xmm0
+  400b24:	ff 
+	for(i=0;i<points;i++){
+		fread(&x_buf,sizeof(int),1,fp);
+		fread(&y_buf,sizeof(int),1,fp);
+		fread(&z_buf,sizeof(int),1,fp);
+
+		x[i]=x_buf*40+960;
+  400b25:	8d 14 92             	lea    (%rdx,%rdx,4),%edx
+  400b28:	8d 14 d5 c0 03 00 00 	lea    0x3c0(,%rdx,8),%edx
+  400b2f:	89 14 86             	mov    %edx,(%rsi,%rax,4)
+		y[i]=y_buf*40+540;
+  400b32:	8b 95 e8 fa ff ff    	mov    -0x518(%rbp),%edx
+  400b38:	48 8b b5 a0 fa ff ff 	mov    -0x560(%rbp),%rsi
+  400b3f:	8d 14 92             	lea    (%rdx,%rdx,4),%edx
+  400b42:	8d 14 d5 1c 02 00 00 	lea    0x21c(,%rdx,8),%edx
+		z[i]=((float)z_buf)*40+100000.0;
+  400b49:	f3 0f 59 05 9f 06 00 	mulss  0x69f(%rip),%xmm0        # 4011f0 <_IO_stdin_used+0xf0>
+  400b50:	00 
+		fread(&x_buf,sizeof(int),1,fp);
+		fread(&y_buf,sizeof(int),1,fp);
+		fread(&z_buf,sizeof(int),1,fp);
+
+		x[i]=x_buf*40+960;
+		y[i]=y_buf*40+540;
+  400b51:	89 14 86             	mov    %edx,(%rsi,%rax,4)
+		z[i]=((float)z_buf)*40+100000.0;
+  400b54:	48 8b 95 98 fa ff ff 	mov    -0x568(%rbp),%rdx
+  400b5b:	f3 0f 58 05 91 06 00 	addss  0x691(%rip),%xmm0        # 4011f4 <_IO_stdin_used+0xf4>
+  400b62:	00 
+  400b63:	f3 0f 11 04 82       	movss  %xmm0,(%rdx,%rax,4)
+	int y[points];
+	float z[points];
+
+	int x_buf,y_buf,z_buf;
+
+	for(i=0;i<points;i++){
+  400b68:	0f 8f 45 ff ff ff    	jg     400ab3 <main+0x263>
+
+		x[i]=x_buf*40+960;
+		y[i]=y_buf*40+540;
+		z[i]=((float)z_buf)*40+100000.0;
+	}
+	fclose(fp);
+  400b6e:	48 89 df             	mov    %rbx,%rdi
+
+	lambda=0.0633;
+	sum=M_PI/lambda;
+
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+  400b71:	45 31 e4             	xor    %r12d,%r12d
+
+		x[i]=x_buf*40+960;
+		y[i]=y_buf*40+540;
+		z[i]=((float)z_buf)*40+100000.0;
+	}
+	fclose(fp);
+  400b74:	e8 27 fc ff ff       	callq  4007a0 <fclose@plt>
+	   }
+	 */
+
+	float *img_buf;
+
+	img_buf=(float *)malloc(sizeof(float)*WIDTH*HEIGHT);
+  400b79:	be 01 00 00 00       	mov    $0x1,%esi
+  400b7e:	bf 00 90 7e 00       	mov    $0x7e9000,%edi
+  400b83:	e8 58 fc ff ff       	callq  4007e0 <calloc@plt>
+double getrusage_sec()
+{
+	struct rusage t;
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+  400b88:	48 8d b5 30 fb ff ff 	lea    -0x4d0(%rbp),%rsi
+  400b8f:	31 ff                	xor    %edi,%edi
+	   }
+	 */
+
+	float *img_buf;
+
+	img_buf=(float *)malloc(sizeof(float)*WIDTH*HEIGHT);
+  400b91:	48 89 85 b0 fa ff ff 	mov    %rax,-0x550(%rbp)
+double getrusage_sec()
+{
+	struct rusage t;
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+  400b98:	e8 83 fc ff ff       	callq  400820 <getrusage@plt>
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  400b9d:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  400ba1:	8b 85 e0 fa ff ff    	mov    -0x520(%rbp),%eax
+  400ba7:	66 0f ef c9          	pxor   %xmm1,%xmm1
+  400bab:	48 8b 95 a8 fa ff ff 	mov    -0x558(%rbp),%rdx
+  400bb2:	f2 48 0f 2a 85 38 fb 	cvtsi2sdq -0x4c8(%rbp),%xmm0
+  400bb9:	ff ff 
+  400bbb:	f2 0f 59 05 bd 05 00 	mulsd  0x5bd(%rip),%xmm0        # 401180 <_IO_stdin_used+0x80>
+  400bc2:	00 
+  400bc3:	89 85 bc fa ff ff    	mov    %eax,-0x544(%rbp)
+  400bc9:	f2 48 0f 2a 8d 30 fb 	cvtsi2sdq -0x4d0(%rbp),%xmm1
+  400bd0:	ff ff 
+  400bd2:	83 e8 01             	sub    $0x1,%eax
+  400bd5:	48 8d 44 82 04       	lea    0x4(%rdx,%rax,4),%rax
+  400bda:	48 89 85 d0 fa ff ff 	mov    %rax,-0x530(%rbp)
+  400be1:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
+  400be5:	f2 0f 11 85 90 fa ff 	movsd  %xmm0,-0x570(%rbp)
+  400bec:	ff 
+  400bed:	41 69 c4 80 07 00 00 	imul   $0x780,%r12d,%eax
+	int y[points];
+	float z[points];
+
+	int x_buf,y_buf,z_buf;
+
+	for(i=0;i<points;i++){
+  400bf4:	48 c7 85 c8 fa ff ff 	movq   $0x0,-0x538(%rbp)
+  400bfb:	00 00 00 00 
+  400bff:	89 85 b8 fa ff ff    	mov    %eax,-0x548(%rbp)
+  400c05:	48 8b 85 c8 fa ff ff 	mov    -0x538(%rbp),%rax
+  400c0c:	0f 1f 40 00          	nopl   0x0(%rax)
+	sum=M_PI/lambda;
+
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+			for(k=0;k<points;k++){
+  400c10:	8b 95 bc fa ff ff    	mov    -0x544(%rbp),%edx
+  400c16:	89 c3                	mov    %eax,%ebx
+  400c18:	85 d2                	test   %edx,%edx
+  400c1a:	0f 8e b4 00 00 00    	jle    400cd4 <main+0x484>
+  400c20:	8b b5 b8 fa ff ff    	mov    -0x548(%rbp),%esi
+  400c26:	48 8b bd b0 fa ff ff 	mov    -0x550(%rbp),%rdi
+  400c2d:	4c 8b ad a8 fa ff ff 	mov    -0x558(%rbp),%r13
+  400c34:	4c 8b b5 a0 fa ff ff 	mov    -0x560(%rbp),%r14
+  400c3b:	4c 8b bd 98 fa ff ff 	mov    -0x568(%rbp),%r15
+  400c42:	01 f0                	add    %esi,%eax
+  400c44:	48 8d 04 87          	lea    (%rdi,%rax,4),%rax
+  400c48:	48 89 85 c0 fa ff ff 	mov    %rax,-0x540(%rbp)
+  400c4f:	f3 0f 10 10          	movss  (%rax),%xmm2
+  400c53:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+				//img_buf[i*WIDTH+j]=img_buf[i*WIDTH+j]+cos(sum*distance_horo_objects_easy(x[k],y[k],z[k],j,i));
+				dx=j-x[k];
+  400c58:	89 d8                	mov    %ebx,%eax
+  400c5a:	41 2b 45 00          	sub    0x0(%r13),%eax
+  400c5e:	f3 0f 11 95 d8 fa ff 	movss  %xmm2,-0x528(%rbp)
+  400c65:	ff 
+  400c66:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  400c6a:	49 83 c5 04          	add    $0x4,%r13
+				dy=i-y[k];
+  400c6e:	66 0f ef c9          	pxor   %xmm1,%xmm1
+  400c72:	49 83 c6 04          	add    $0x4,%r14
+  400c76:	49 83 c7 04          	add    $0x4,%r15
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+			for(k=0;k<points;k++){
+				//img_buf[i*WIDTH+j]=img_buf[i*WIDTH+j]+cos(sum*distance_horo_objects_easy(x[k],y[k],z[k],j,i));
+				dx=j-x[k];
+  400c7a:	f3 0f 2a c0          	cvtsi2ss %eax,%xmm0
+				dy=i-y[k];
+  400c7e:	44 89 e0             	mov    %r12d,%eax
+  400c81:	41 2b 46 fc          	sub    -0x4(%r14),%eax
+  400c85:	f3 0f 2a c8          	cvtsi2ss %eax,%xmm1
+				img_buf[i*WIDTH+j]=img_buf[i*WIDTH+j]+cos(sum*(dx*dx+dy*dy)/z[k]);
+  400c89:	f3 0f 59 c0          	mulss  %xmm0,%xmm0
+  400c8d:	f3 0f 59 c9          	mulss  %xmm1,%xmm1
+  400c91:	f3 0f 58 c1          	addss  %xmm1,%xmm0
+  400c95:	f3 0f 59 05 5b 05 00 	mulss  0x55b(%rip),%xmm0        # 4011f8 <_IO_stdin_used+0xf8>
+  400c9c:	00 
+  400c9d:	f3 41 0f 5e 47 fc    	divss  -0x4(%r15),%xmm0
+  400ca3:	f3 0f 5a c0          	cvtss2sd %xmm0,%xmm0
+  400ca7:	e8 14 fb ff ff       	callq  4007c0 <cos@plt>
+  400cac:	f3 0f 10 95 d8 fa ff 	movss  -0x528(%rbp),%xmm2
+  400cb3:	ff 
+	sum=M_PI/lambda;
+
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+			for(k=0;k<points;k++){
+  400cb4:	4c 39 ad d0 fa ff ff 	cmp    %r13,-0x530(%rbp)
+				//img_buf[i*WIDTH+j]=img_buf[i*WIDTH+j]+cos(sum*distance_horo_objects_easy(x[k],y[k],z[k],j,i));
+				dx=j-x[k];
+				dy=i-y[k];
+				img_buf[i*WIDTH+j]=img_buf[i*WIDTH+j]+cos(sum*(dx*dx+dy*dy)/z[k]);
+  400cbb:	f3 0f 5a d2          	cvtss2sd %xmm2,%xmm2
+  400cbf:	f2 0f 58 d0          	addsd  %xmm0,%xmm2
+  400cc3:	f2 0f 5a d2          	cvtsd2ss %xmm2,%xmm2
+	sum=M_PI/lambda;
+
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+			for(k=0;k<points;k++){
+  400cc7:	75 8f                	jne    400c58 <main+0x408>
+  400cc9:	48 8b 85 c0 fa ff ff 	mov    -0x540(%rbp),%rax
+  400cd0:	f3 0f 11 10          	movss  %xmm2,(%rax)
+  400cd4:	48 83 85 c8 fa ff ff 	addq   $0x1,-0x538(%rbp)
+  400cdb:	01 
+  400cdc:	48 8b 85 c8 fa ff ff 	mov    -0x538(%rbp),%rax
+	lambda=0.0633;
+	sum=M_PI/lambda;
+
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+  400ce3:	48 3d 80 07 00 00    	cmp    $0x780,%rax
+  400ce9:	0f 85 21 ff ff ff    	jne    400c10 <main+0x3c0>
+
+	lambda=0.0633;
+	sum=M_PI/lambda;
+
+	starttime1 = getrusage_sec();
+	for(i=0;i<HEIGHT;i++){
+  400cef:	41 83 c4 01          	add    $0x1,%r12d
+  400cf3:	41 81 fc 38 04 00 00 	cmp    $0x438,%r12d
+  400cfa:	0f 85 ed fe ff ff    	jne    400bed <main+0x39d>
+double getrusage_sec()
+{
+	struct rusage t;
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+  400d00:	48 8d b5 30 fb ff ff 	lea    -0x4d0(%rbp),%rsi
+  400d07:	31 ff                	xor    %edi,%edi
+  400d09:	e8 12 fb ff ff       	callq  400820 <getrusage@plt>
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  400d0e:	66 0f ef c0          	pxor   %xmm0,%xmm0
+	}
+	endtime1 = getrusage_sec();
+
+	float min,max,mid;
+
+	min=img_buf[0];
+  400d12:	48 8b 95 b0 fa ff ff 	mov    -0x550(%rbp),%rdx
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  400d19:	66 0f ef c9          	pxor   %xmm1,%xmm1
+  400d1d:	f2 48 0f 2a 85 38 fb 	cvtsi2sdq -0x4c8(%rbp),%xmm0
+  400d24:	ff ff 
+  400d26:	f2 0f 59 05 52 04 00 	mulsd  0x452(%rip),%xmm0        # 401180 <_IO_stdin_used+0x80>
+  400d2d:	00 
+	}
+	endtime1 = getrusage_sec();
+
+	float min,max,mid;
+
+	min=img_buf[0];
+  400d2e:	f3 0f 10 12          	movss  (%rdx),%xmm2
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  400d32:	f2 48 0f 2a 8d 30 fb 	cvtsi2sdq -0x4d0(%rbp),%xmm1
+  400d39:	ff ff 
+  400d3b:	48 8d 8a 00 90 7e 00 	lea    0x7e9000(%rdx),%rcx
+	}
+	endtime1 = getrusage_sec();
+
+	float min,max,mid;
+
+	min=img_buf[0];
+  400d42:	48 89 d0             	mov    %rdx,%rax
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  400d45:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
+	endtime1 = getrusage_sec();
+
+	float min,max,mid;
+
+	min=img_buf[0];
+	max=img_buf[0];
+  400d49:	0f 28 ca             	movaps %xmm2,%xmm1
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  400d4c:	f2 0f 11 85 d8 fa ff 	movsd  %xmm0,-0x528(%rbp)
+  400d53:	ff 
+  400d54:	48 8d 90 00 1e 00 00 	lea    0x1e00(%rax),%rdx
+  400d5b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+	min=img_buf[0];
+	max=img_buf[0];
+
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+			if(min>img_buf[i*WIDTH+j]){
+  400d60:	f3 0f 10 00          	movss  (%rax),%xmm0
+  400d64:	48 83 c0 04          	add    $0x4,%rax
+  400d68:	0f 28 e8             	movaps %xmm0,%xmm5
+
+	min=img_buf[0];
+	max=img_buf[0];
+
+	for(i=0;i<HEIGHT;i++){
+		for(j=0;j<WIDTH;j++){
+  400d6b:	48 39 c2             	cmp    %rax,%rdx
+  400d6e:	f3 0f 5f c1          	maxss  %xmm1,%xmm0
+  400d72:	f3 0f 5d ea          	minss  %xmm2,%xmm5
+  400d76:	0f 28 c8             	movaps %xmm0,%xmm1
+  400d79:	0f 28 d5             	movaps %xmm5,%xmm2
+  400d7c:	75 e2                	jne    400d60 <main+0x510>
+	float min,max,mid;
+
+	min=img_buf[0];
+	max=img_buf[0];
+
+	for(i=0;i<HEIGHT;i++){
+  400d7e:	48 39 d1             	cmp    %rdx,%rcx
+  400d81:	48 89 d0             	mov    %rdx,%rax
+  400d84:	75 ce                	jne    400d54 <main+0x504>
+				max=img_buf[i*WIDTH+j];
+			}
+		}
+	}
+
+	mid=0.5*(min+max);
+  400d86:	0f 28 dd             	movaps %xmm5,%xmm3
+}
+
+__fortify_function int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+  400d89:	f3 0f 5a c9          	cvtss2sd %xmm1,%xmm1
+  400d8d:	be 58 11 40 00       	mov    $0x401158,%esi
+  400d92:	bf 01 00 00 00       	mov    $0x1,%edi
+  400d97:	b8 03 00 00 00       	mov    $0x3,%eax
+  400d9c:	f3 0f 58 d8          	addss  %xmm0,%xmm3
+  400da0:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  400da4:	f3 0f 5a c2          	cvtss2sd %xmm2,%xmm0
+  400da8:	66 0f ef d2          	pxor   %xmm2,%xmm2
+  400dac:	f3 0f 59 1d 48 04 00 	mulss  0x448(%rip),%xmm3        # 4011fc <_IO_stdin_used+0xfc>
+  400db3:	00 
+  400db4:	f3 0f 5a d3          	cvtss2sd %xmm3,%xmm2
+  400db8:	f3 0f 11 9d d0 fa ff 	movss  %xmm3,-0x530(%rbp)
+  400dbf:	ff 
+  400dc0:	e8 3b fa ff ff       	callq  400800 <__printf_chk@plt>
+
+	printf("min = %lf  max = %lf  mid = %lf\n",min,max,mid);
+
+
+	unsigned char *img;
+	img=(unsigned char *)malloc(sizeof(unsigned char)*WIDTH*HEIGHT);
+  400dc5:	bf 00 a4 1f 00       	mov    $0x1fa400,%edi
+  400dca:	e8 21 fa ff ff       	callq  4007f0 <malloc@plt>
+  400dcf:	f3 0f 10 9d d0 fa ff 	movss  -0x530(%rbp),%xmm3
+  400dd6:	ff 
+  400dd7:	49 89 c4             	mov    %rax,%r12
+  400dda:	31 c0                	xor    %eax,%eax
+
+	for(i=0;i<WIDTH*HEIGHT;i++){
+		if(img_buf[i]<mid){
+  400ddc:	48 8b 95 b0 fa ff ff 	mov    -0x550(%rbp),%rdx
+  400de3:	f3 0f 10 04 82       	movss  (%rdx,%rax,4),%xmm0
+  400de8:	0f 2e d8             	ucomiss %xmm0,%xmm3
+  400deb:	76 05                	jbe    400df2 <main+0x5a2>
+			img[i]=0;
+  400ded:	41 c6 04 04 00       	movb   $0x0,(%r12,%rax,1)
+		}
+		if(img_buf[i]>mid){
+  400df2:	0f 2e c3             	ucomiss %xmm3,%xmm0
+  400df5:	76 05                	jbe    400dfc <main+0x5ac>
+			img[i]=255;
+  400df7:	41 c6 04 04 ff       	movb   $0xff,(%r12,%rax,1)
+  400dfc:	48 83 c0 01          	add    $0x1,%rax
+
+
+	unsigned char *img;
+	img=(unsigned char *)malloc(sizeof(unsigned char)*WIDTH*HEIGHT);
+
+	for(i=0;i<WIDTH*HEIGHT;i++){
+  400e00:	48 3d 00 a4 1f 00    	cmp    $0x1fa400,%rax
+  400e06:	75 d4                	jne    400ddc <main+0x58c>
+			img[i]=255;
+		}
+	}
+
+	FILE *fp1;
+	fp1=fopen("cgh.bmp","wb");
+  400e08:	be 2d 11 40 00       	mov    $0x40112d,%esi
+  400e0d:	bf 30 11 40 00       	mov    $0x401130,%edi
+  400e12:	e8 f9 f9 ff ff       	callq  400810 <fopen@plt>
+	if(fp1==NULL){
+  400e17:	48 85 c0             	test   %rax,%rax
+			img[i]=255;
+		}
+	}
+
+	FILE *fp1;
+	fp1=fopen("cgh.bmp","wb");
+  400e1a:	48 89 c3             	mov    %rax,%rbx
+	if(fp1==NULL){
+  400e1d:	75 0a                	jne    400e29 <main+0x5d9>
+  400e1f:	bf 1d 11 40 00       	mov    $0x40111d,%edi
+  400e24:	e8 57 f9 ff ff       	callq  400780 <puts@plt>
+		printf("Can't open file\n");
+	}
+
+	fwrite(&BmpFileHeader, sizeof(BmpFileHeader) , 1 ,fp1);
+  400e29:	48 8d bd f0 fa ff ff 	lea    -0x510(%rbp),%rdi
+  400e30:	48 89 d9             	mov    %rbx,%rcx
+  400e33:	ba 01 00 00 00       	mov    $0x1,%edx
+  400e38:	be 0e 00 00 00       	mov    $0xe,%esi
+  400e3d:	e8 ee f9 ff ff       	callq  400830 <fwrite@plt>
+	fwrite(&BmpInfoHeader, sizeof(BmpInfoHeader) , 1 ,fp1);
+  400e42:	48 8d bd 00 fb ff ff 	lea    -0x500(%rbp),%rdi
+  400e49:	48 89 d9             	mov    %rbx,%rcx
+  400e4c:	ba 01 00 00 00       	mov    $0x1,%edx
+  400e51:	be 28 00 00 00       	mov    $0x28,%esi
+  400e56:	e8 d5 f9 ff ff       	callq  400830 <fwrite@plt>
+	fwrite(&RGBQuad[0], sizeof(RGBQuad[0]) , 256 ,fp1);
+  400e5b:	48 8d bd c0 fb ff ff 	lea    -0x440(%rbp),%rdi
+  400e62:	48 89 d9             	mov    %rbx,%rcx
+  400e65:	ba 00 01 00 00       	mov    $0x100,%edx
+  400e6a:	be 04 00 00 00       	mov    $0x4,%esi
+  400e6f:	e8 bc f9 ff ff       	callq  400830 <fwrite@plt>
+	fwrite(img,sizeof(unsigned char),WIDTH*HEIGHT,fp1);
+  400e74:	ba 00 a4 1f 00       	mov    $0x1fa400,%edx
+  400e79:	48 89 d9             	mov    %rbx,%rcx
+  400e7c:	be 01 00 00 00       	mov    $0x1,%esi
+  400e81:	4c 89 e7             	mov    %r12,%rdi
+  400e84:	e8 a7 f9 ff ff       	callq  400830 <fwrite@plt>
+  400e89:	f2 0f 10 85 d8 fa ff 	movsd  -0x528(%rbp),%xmm0
+  400e90:	ff 
+  400e91:	be 38 11 40 00       	mov    $0x401138,%esi
+  400e96:	bf 01 00 00 00       	mov    $0x1,%edi
+  400e9b:	b8 01 00 00 00       	mov    $0x1,%eax
+  400ea0:	f2 0f 5c 85 90 fa ff 	subsd  -0x570(%rbp),%xmm0
+  400ea7:	ff 
+  400ea8:	e8 53 f9 ff ff       	callq  400800 <__printf_chk@plt>
+
+	printf("Calculation time is %lf\n",endtime1-starttime1);
+
+	free(img);
+  400ead:	4c 89 e7             	mov    %r12,%rdi
+  400eb0:	e8 bb f8 ff ff       	callq  400770 <free@plt>
+	free(img_buf);
+  400eb5:	48 8b bd b0 fa ff ff 	mov    -0x550(%rbp),%rdi
+  400ebc:	e8 af f8 ff ff       	callq  400770 <free@plt>
+	fclose(fp1);
+  400ec1:	48 89 df             	mov    %rbx,%rdi
+  400ec4:	e8 d7 f8 ff ff       	callq  4007a0 <fclose@plt>
+
+	return 0;
+}
+  400ec9:	31 c0                	xor    %eax,%eax
+  400ecb:	48 8b 55 c8          	mov    -0x38(%rbp),%rdx
+  400ecf:	64 48 33 14 25 28 00 	xor    %fs:0x28,%rdx
+  400ed6:	00 00 
+  400ed8:	75 0f                	jne    400ee9 <main+0x699>
+  400eda:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  400ede:	5b                   	pop    %rbx
+  400edf:	41 5c                	pop    %r12
+  400ee1:	41 5d                	pop    %r13
+  400ee3:	41 5e                	pop    %r14
+  400ee5:	41 5f                	pop    %r15
+  400ee7:	5d                   	pop    %rbp
+  400ee8:	c3                   	retq   
+  400ee9:	e8 c2 f8 ff ff       	callq  4007b0 <__stack_chk_fail@plt>
+  400eee:	66 90                	xchg   %ax,%ax
+
+0000000000400ef0 <_start>:
+  400ef0:	31 ed                	xor    %ebp,%ebp
+  400ef2:	49 89 d1             	mov    %rdx,%r9
+  400ef5:	5e                   	pop    %rsi
+  400ef6:	48 89 e2             	mov    %rsp,%rdx
+  400ef9:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+  400efd:	50                   	push   %rax
+  400efe:	54                   	push   %rsp
+  400eff:	49 c7 c0 f0 10 40 00 	mov    $0x4010f0,%r8
+  400f06:	48 c7 c1 80 10 40 00 	mov    $0x401080,%rcx
+  400f0d:	48 c7 c7 50 08 40 00 	mov    $0x400850,%rdi
+  400f14:	e8 b7 f8 ff ff       	callq  4007d0 <__libc_start_main@plt>
+  400f19:	f4                   	hlt    
+  400f1a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000400f20 <deregister_tm_clones>:
+  400f20:	b8 97 20 60 00       	mov    $0x602097,%eax
+  400f25:	55                   	push   %rbp
+  400f26:	48 2d 90 20 60 00    	sub    $0x602090,%rax
+  400f2c:	48 83 f8 0e          	cmp    $0xe,%rax
+  400f30:	48 89 e5             	mov    %rsp,%rbp
+  400f33:	76 1b                	jbe    400f50 <deregister_tm_clones+0x30>
+  400f35:	b8 00 00 00 00       	mov    $0x0,%eax
+  400f3a:	48 85 c0             	test   %rax,%rax
+  400f3d:	74 11                	je     400f50 <deregister_tm_clones+0x30>
+  400f3f:	5d                   	pop    %rbp
+  400f40:	bf 90 20 60 00       	mov    $0x602090,%edi
+  400f45:	ff e0                	jmpq   *%rax
+  400f47:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+  400f4e:	00 00 
+  400f50:	5d                   	pop    %rbp
+  400f51:	c3                   	retq   
+  400f52:	0f 1f 40 00          	nopl   0x0(%rax)
+  400f56:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  400f5d:	00 00 00 
+
+0000000000400f60 <register_tm_clones>:
+  400f60:	be 90 20 60 00       	mov    $0x602090,%esi
+  400f65:	55                   	push   %rbp
+  400f66:	48 81 ee 90 20 60 00 	sub    $0x602090,%rsi
+  400f6d:	48 c1 fe 03          	sar    $0x3,%rsi
+  400f71:	48 89 e5             	mov    %rsp,%rbp
+  400f74:	48 89 f0             	mov    %rsi,%rax
+  400f77:	48 c1 e8 3f          	shr    $0x3f,%rax
+  400f7b:	48 01 c6             	add    %rax,%rsi
+  400f7e:	48 d1 fe             	sar    %rsi
+  400f81:	74 15                	je     400f98 <register_tm_clones+0x38>
+  400f83:	b8 00 00 00 00       	mov    $0x0,%eax
+  400f88:	48 85 c0             	test   %rax,%rax
+  400f8b:	74 0b                	je     400f98 <register_tm_clones+0x38>
+  400f8d:	5d                   	pop    %rbp
+  400f8e:	bf 90 20 60 00       	mov    $0x602090,%edi
+  400f93:	ff e0                	jmpq   *%rax
+  400f95:	0f 1f 00             	nopl   (%rax)
+  400f98:	5d                   	pop    %rbp
+  400f99:	c3                   	retq   
+  400f9a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000400fa0 <__do_global_dtors_aux>:
+  400fa0:	80 3d e9 10 20 00 00 	cmpb   $0x0,0x2010e9(%rip)        # 602090 <__TMC_END__>
+  400fa7:	75 11                	jne    400fba <__do_global_dtors_aux+0x1a>
+  400fa9:	55                   	push   %rbp
+  400faa:	48 89 e5             	mov    %rsp,%rbp
+  400fad:	e8 6e ff ff ff       	callq  400f20 <deregister_tm_clones>
+  400fb2:	5d                   	pop    %rbp
+  400fb3:	c6 05 d6 10 20 00 01 	movb   $0x1,0x2010d6(%rip)        # 602090 <__TMC_END__>
+  400fba:	f3 c3                	repz retq 
+  400fbc:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000400fc0 <frame_dummy>:
+  400fc0:	bf 10 1e 60 00       	mov    $0x601e10,%edi
+  400fc5:	48 83 3f 00          	cmpq   $0x0,(%rdi)
+  400fc9:	75 05                	jne    400fd0 <frame_dummy+0x10>
+  400fcb:	eb 93                	jmp    400f60 <register_tm_clones>
+  400fcd:	0f 1f 00             	nopl   (%rax)
+  400fd0:	b8 00 00 00 00       	mov    $0x0,%eax
+  400fd5:	48 85 c0             	test   %rax,%rax
+  400fd8:	74 f1                	je     400fcb <frame_dummy+0xb>
+  400fda:	55                   	push   %rbp
+  400fdb:	48 89 e5             	mov    %rsp,%rbp
+  400fde:	ff d0                	callq  *%rax
+  400fe0:	5d                   	pop    %rbp
+  400fe1:	e9 7a ff ff ff       	jmpq   400f60 <register_tm_clones>
+  400fe6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  400fed:	00 00 00 
+
+0000000000400ff0 <getrusage_sec>:
+	RGBQUAD          bmiColors[1];
+}BITMAPINFO;
+
+
+double getrusage_sec()
+{
+  400ff0:	48 81 ec a8 00 00 00 	sub    $0xa8,%rsp
+	struct rusage t;
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+  400ff7:	31 ff                	xor    %edi,%edi
+  400ff9:	48 89 e6             	mov    %rsp,%rsi
+	RGBQUAD          bmiColors[1];
+}BITMAPINFO;
+
+
+double getrusage_sec()
+{
+  400ffc:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  401003:	00 00 
+  401005:	48 89 84 24 98 00 00 	mov    %rax,0x98(%rsp)
+  40100c:	00 
+  40100d:	31 c0                	xor    %eax,%eax
+	struct rusage t;
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+  40100f:	e8 0c f8 ff ff       	callq  400820 <getrusage@plt>
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  401014:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  401018:	66 0f ef c9          	pxor   %xmm1,%xmm1
+}
+  40101c:	48 8b 84 24 98 00 00 	mov    0x98(%rsp),%rax
+  401023:	00 
+  401024:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
+  40102b:	00 00 
+	struct timeval tv;
+
+	getrusage(RUSAGE_SELF,&t);
+	tv = t.ru_utime;
+
+	return tv.tv_sec + (double)tv.tv_usec*1e-6;
+  40102d:	f2 48 0f 2a 44 24 08 	cvtsi2sdq 0x8(%rsp),%xmm0
+  401034:	f2 0f 59 05 44 01 00 	mulsd  0x144(%rip),%xmm0        # 401180 <_IO_stdin_used+0x80>
+  40103b:	00 
+  40103c:	f2 48 0f 2a 0c 24    	cvtsi2sdq (%rsp),%xmm1
+  401042:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
+}
+  401046:	75 08                	jne    401050 <getrusage_sec+0x60>
+  401048:	48 81 c4 a8 00 00 00 	add    $0xa8,%rsp
+  40104f:	c3                   	retq   
+  401050:	e8 5b f7 ff ff       	callq  4007b0 <__stack_chk_fail@plt>
+  401055:	90                   	nop
+  401056:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  40105d:	00 00 00 
+
+0000000000401060 <distance_horo_objects_easy>:
+float distance_horo_objects_easy(int xj,int yj,float zj,int xa,int ya){
+	float r_ja;
+	int dx;
+	int dy;
+
+	dx=xa-xj;
+  401060:	29 fa                	sub    %edi,%edx
+	dy=ya-yj;
+  401062:	29 f1                	sub    %esi,%ecx
+
+	r_ja=(dx*dx+dy*dy)/zj;
+
+	return r_ja;
+  401064:	0f af d2             	imul   %edx,%edx
+  401067:	66 0f ef c9          	pxor   %xmm1,%xmm1
+  40106b:	0f af c9             	imul   %ecx,%ecx
+  40106e:	01 d1                	add    %edx,%ecx
+  401070:	f3 0f 2a c9          	cvtsi2ss %ecx,%xmm1
+  401074:	f3 0f 5e c8          	divss  %xmm0,%xmm1
+  401078:	0f 28 c1             	movaps %xmm1,%xmm0
+}
+  40107b:	c3                   	retq   
+  40107c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000401080 <__libc_csu_init>:
+  401080:	41 57                	push   %r15
+  401082:	41 56                	push   %r14
+  401084:	41 89 ff             	mov    %edi,%r15d
+  401087:	41 55                	push   %r13
+  401089:	41 54                	push   %r12
+  40108b:	4c 8d 25 6e 0d 20 00 	lea    0x200d6e(%rip),%r12        # 601e00 <__frame_dummy_init_array_entry>
+  401092:	55                   	push   %rbp
+  401093:	48 8d 2d 6e 0d 20 00 	lea    0x200d6e(%rip),%rbp        # 601e08 <__init_array_end>
+  40109a:	53                   	push   %rbx
+  40109b:	49 89 f6             	mov    %rsi,%r14
+  40109e:	49 89 d5             	mov    %rdx,%r13
+  4010a1:	4c 29 e5             	sub    %r12,%rbp
+  4010a4:	48 83 ec 08          	sub    $0x8,%rsp
+  4010a8:	48 c1 fd 03          	sar    $0x3,%rbp
+  4010ac:	e8 8f f6 ff ff       	callq  400740 <_init>
+  4010b1:	48 85 ed             	test   %rbp,%rbp
+  4010b4:	74 20                	je     4010d6 <__libc_csu_init+0x56>
+  4010b6:	31 db                	xor    %ebx,%ebx
+  4010b8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  4010bf:	00 
+  4010c0:	4c 89 ea             	mov    %r13,%rdx
+  4010c3:	4c 89 f6             	mov    %r14,%rsi
+  4010c6:	44 89 ff             	mov    %r15d,%edi
+  4010c9:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+  4010cd:	48 83 c3 01          	add    $0x1,%rbx
+  4010d1:	48 39 eb             	cmp    %rbp,%rbx
+  4010d4:	75 ea                	jne    4010c0 <__libc_csu_init+0x40>
+  4010d6:	48 83 c4 08          	add    $0x8,%rsp
+  4010da:	5b                   	pop    %rbx
+  4010db:	5d                   	pop    %rbp
+  4010dc:	41 5c                	pop    %r12
+  4010de:	41 5d                	pop    %r13
+  4010e0:	41 5e                	pop    %r14
+  4010e2:	41 5f                	pop    %r15
+  4010e4:	c3                   	retq   
+  4010e5:	90                   	nop
+  4010e6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  4010ed:	00 00 00 
+
+00000000004010f0 <__libc_csu_fini>:
+  4010f0:	f3 c3                	repz retq 
+
+セクション .fini の逆アセンブル:
+
+00000000004010f4 <_fini>:
+  4010f4:	48 83 ec 08          	sub    $0x8,%rsp
+  4010f8:	48 83 c4 08          	add    $0x8,%rsp
+  4010fc:	c3                   	retq   
