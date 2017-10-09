@@ -30,11 +30,11 @@ main() {
 	sk3.Q = 0.00001;
 	sk4.Q = 0.00001;
 	sk5.Q = 0.00001;
-	sk1.R = 0.0001;
-	sk2.R = 0.001;
+	sk1.R = 0.01;
+	sk2.R = 0.01;
 	sk3.R = 0.01;
-	sk4.R = 0.1;
-	sk5.R = 1.0;
+	sk4.R = 0.01;
+	sk5.R = 0.01;
 
 	float	baro_alt;
 	float	baro_alt_old;

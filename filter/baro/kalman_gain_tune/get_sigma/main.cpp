@@ -19,25 +19,15 @@ main() {
 	float	newtime;
 	float	oldtime;
 	// alt unit : meter
-	SimpleKalman sk1;
-	SimpleKalman sk2;
-	SimpleKalman sk3;
-	SimpleKalman sk4;
-	SimpleKalman sk5;
-
-	sk1.Q = 0.00001;
-	sk2.Q = 0.00001;
-	sk3.Q = 0.00001;
-	sk4.Q = 0.00001;
-	sk5.Q = 0.00001;
-	sk1.R = 0.0001;
-	sk2.R = 0.001;
-	sk3.R = 0.01;
-	sk4.R = 0.1;
-	sk5.R = 1.0;
-
 	float	baro_alt;
 	float	baro_alt_old;
+
+	int counter = 1;
+	float sum= 0.0f;
+	float myu;
+	float sigma;
+	float sum_sigma=0.0f;
+	float sigma_av;
 
 	while (std::getline(ifs,str)) {
 		std::string token;
@@ -52,23 +42,19 @@ main() {
 				if (initial_flag) {
 					oldtime = newtime; 
 					baro_alt_old = baro_alt;
-					sk1.initialize(baro_alt);
-					sk2.initialize(baro_alt);
-					sk3.initialize(baro_alt);
-					sk4.initialize(baro_alt);
-					sk5.initialize(baro_alt);
 					initial_flag = false;
 				} else {
 					if (baro_alt != baro_alt_old) {
-						ofs_all << newtime << "\t" << baro_alt << "\t" 
-									<< sk1.update(baro_alt)
-									<< "\t" << sk2.update(baro_alt)
-									<< "\t" << sk3.update(baro_alt)
-									<< "\t" << sk4.update(baro_alt)
-									<< "\t" << sk5.update(baro_alt) << std::endl;
+						sum = sum + baro_alt;
+						myu = sum / (float)counter;
+						sigma = pow((baro_alt - myu),2);
+						sum_sigma = sum_sigma + sigma;
+						sigma_av = sum_sigma / (float)counter;
+						ofs_all << newtime << "\t" << baro_alt<< "\t" << myu << "\t" << sigma_av << std::endl;
 						// update old value
 						oldtime = newtime;
 						baro_alt_old = baro_alt;
+						counter++;
 					}
 				}
 			}

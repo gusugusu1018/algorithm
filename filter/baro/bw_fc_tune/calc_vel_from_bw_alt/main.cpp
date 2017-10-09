@@ -23,22 +23,18 @@ main() {
 	SimpleButterWorth bw2;
 	SimpleButterWorth bw3;
 	SimpleButterWorth bw4;
-	SimpleButterWorth bw5;
-	SimpleButterWorth bw6;
-	SimpleButterWorth bw7;
-	SimpleButterWorth bw8;
 
-	bw1.fc = 0.1f;
-	bw2.fc = 0.5f;
-	bw3.fc = 1.0f;
-	bw4.fc = 2.0f;
-	bw5.fc = 3.0f;
-	bw6.fc = 4.0f;
-	bw7.fc = 5.0f;
-	bw8.fc = 10.0;
+	bw1.fc = 1.75f;
+	bw2.fc = 2.0f;
+	bw3.fc = 2.25f;
+	bw4.fc = 2.3f;
 
 	float	baro_alt;
 	float	baro_alt_old;
+	float baro_vel1;
+	float baro_vel2;
+	float baro_vel3;
+	float baro_vel4;
 
 	while (std::getline(ifs,str)) {
 		std::string token;
@@ -57,22 +53,26 @@ main() {
 					bw2.initialize(baro_alt);
 					bw3.initialize(baro_alt);
 					bw4.initialize(baro_alt);
-					bw5.initialize(baro_alt);
-					bw6.initialize(baro_alt);
-					bw7.initialize(baro_alt);
-					bw8.initialize(baro_alt);
 					initial_flag = false;
 				} else {
 					if (baro_alt != baro_alt_old) {
+						bw1.update(baro_alt);
+						bw2.update(baro_alt);
+						bw3.update(baro_alt);
+						bw4.update(baro_alt);
+						baro_vel1 = (bw1.now - bw1.old)*1000000.0f/(newtime - oldtime);
+						baro_vel2 = (bw2.now - bw2.old)*1000000.0f/(newtime - oldtime);
+						baro_vel3 = (bw3.now - bw3.old)*1000000.0f/(newtime - oldtime);
+						baro_vel4 = (bw4.now - bw4.old)*1000000.0f/(newtime - oldtime);
 						ofs_all << newtime << "\t" << baro_alt
-									<< "\t" << bw1.update(baro_alt)
-									<< "\t" << bw2.update(baro_alt)
-									<< "\t" << bw3.update(baro_alt)
-									<< "\t" << bw4.update(baro_alt)
-									<< "\t" << bw5.update(baro_alt)
-									<< "\t" << bw6.update(baro_alt)
-									<< "\t" << bw7.update(baro_alt)
-									<< "\t" << bw8.update(baro_alt)
+									<< "\t" << bw1.now
+									<< "\t" << bw2.now
+									<< "\t" << bw3.now
+									<< "\t" << bw4.now
+									<< "\t" << baro_vel1
+									<< "\t" << baro_vel2
+									<< "\t" << baro_vel3
+									<< "\t" << baro_vel4
 									<< std::endl;
 						// update old value
 						oldtime = newtime;
