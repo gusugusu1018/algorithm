@@ -25,16 +25,16 @@ main() {
 	SimpleKalman sk4;
 	SimpleKalman sk5;
 
-	sk1.Q = 0.00001;
-	sk2.Q = 0.00001;
-	sk3.Q = 0.00001;
-	sk4.Q = 0.00001;
-	sk5.Q = 0.00001;
-	sk1.R = 0.0001;
-	sk2.R = 0.001;
-	sk3.R = 0.01;
-	sk4.R = 0.1;
-	sk5.R = 1.0;
+	sk1.Q = 1000;
+	sk2.Q = 1000;
+	sk3.Q = 1000;
+	sk4.Q = 1000;
+	sk5.Q = 1000;
+	sk1.R = 1000;
+	sk2.R = 10000;
+	sk3.R = 100000;
+	sk4.R = 1000000;
+	sk5.R = 10000000;
 
 	float	baro_alt;
 	float	baro_alt_old;
