@@ -3,5 +3,5 @@ all:
 clean:
 	rm main.out rawFchanged.txt filtered_baro_alt.txt filtered_baro_vel.txt filtered_baro_acc.txt
 plot:
-	gnuplot -e "plot '1.txt' with lines; pause -1"
+	gnuplot -e "load 'plot.gp'; pause -1"
 

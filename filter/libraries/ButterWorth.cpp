@@ -1,12 +1,14 @@
 template <class data_t, uint8_t BUF_SIZE>
 class ButterWorthFilter:public Filter<data_t, BUF_SIZE> {
 private:
-	constexpr static data_t tau = 0.0025f;
-	constexpr static data_t fc = 2.8f;
+	data_t _tau = 0.0025f;
+	data_t _fc = 2.8f;
 public:
 	ButterWorthFilter(void) {}
 	virtual ~ButterWorthFilter() {}
 	data_t update(data_t raw);
+	void set_tau(data_t tau) { _tau = tau;}
+	void set_fc(data_t fc) { _fc = fc;}
 };
 template <class data_t, uint8_t BUF_SIZE>
 data_t ButterWorthFilter<data_t, BUF_SIZE>::update(data_t raw) {
@@ -16,8 +18,8 @@ data_t ButterWorthFilter<data_t, BUF_SIZE>::update(data_t raw) {
 	//update old value
 	this->buf_update(this->dst);
 
-	Omg = 2.0 * M_PI * fc;
-	tOmg = Omg * tau;
+	Omg = 2.0 * M_PI * _fc;
+	tOmg = Omg * _tau;
 
 	ss = tOmg * sin(theta);
 	cs = tOmg * cos(theta);

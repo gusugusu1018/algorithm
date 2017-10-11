@@ -4,3 +4,4 @@
 #include "Filter.cpp"
 #include "ButterWorth.cpp"
 #include "SteadyKalman.cpp"
+#include "ChangeRateThreshold.cpp"

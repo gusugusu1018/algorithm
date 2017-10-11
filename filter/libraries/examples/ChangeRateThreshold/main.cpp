@@ -18,9 +18,11 @@ main() {
 	float	newtime;
 	float	oldtime;
 	// alt unit : meter
-	ButterWorthFilter<float,3> bw;
+	ChangeRateThresholdFilter<float,2> crt;
 	float	baro_alt;
 	float	baro_alt_old;
+
+	crt.set_threshold(10.0f);
 
 	while (std::getline(ifs,str)) {
 		std::string token;
@@ -35,12 +37,12 @@ main() {
 				if (initial_flag) {
 					oldtime = newtime; 
 					baro_alt_old = baro_alt;
-				bw.initialize(baro_alt);
+					crt.initialize(baro_alt);
 					initial_flag = false;
 				} else {
 					if (baro_alt != baro_alt_old) {
 						ofs_all << newtime << "\t" << baro_alt
-									<< "\t" << bw.update(baro_alt)
+									<< "\t" << crt.update(baro_alt)
 									<< std::endl;
 						// update old value
 						oldtime = newtime;

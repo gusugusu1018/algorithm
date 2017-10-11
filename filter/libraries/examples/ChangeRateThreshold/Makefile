@@ -4,6 +4,6 @@ clean:
 	rm main.out all.txt
 plot:
 	gnuplot -e "plot 'all.txt' using 1:2 title 'raw' with lines,\
-		'all.txt' using 1:3 title 'SteadyKalman' with lines lw 2,\
+		'all.txt' using 1:3 title 'Change Rate Threshold' with lines lw 2,\
 		; pause -1"
 
