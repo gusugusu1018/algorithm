@@ -4,9 +4,12 @@
 #include<stdlib.h>
 #include<cuda.h>
 
-
+/*
 #define WID 1024
 #define HEI 1024
+*/
+#define WID 1408
+#define HEI 1080
 
 #pragma pack(push,1)
 typedef struct tagBITMAPFILEHEADER
@@ -52,27 +55,19 @@ typedef struct tagBITMAPINFO
 __global__ void distance_gpu(int *x_d,int *y_d,double *z_d,double *img_buf_d,int *tensuu_d)
 {
   int i,j,k;
-
   i=blockIdx.x;
   j=threadIdx.x;
-
   double hatyou,goukei;
-
   hatyou=0.0633;
   goukei=M_PI/hatyou;
-
-
   for(k=0;k<*tensuu_d;k++){
     img_buf_d[i*WID+j]=img_buf_d[i*WID+j]+cos(goukei*((j-x_d[k])*(j-x_d[k])+(i-y_d[k])*(i-y_d[k]))/z_d[k]);
   }
-  
 }
 
 
 int main(){
-
     int tensuu;
-
     BITMAPFILEHEADER    BmpFileHeader;
     BITMAPINFOHEADER    BmpInfoHeader;
     RGBQUAD             RGBQuad[256];
@@ -121,14 +116,11 @@ int main(){
 
     cudaMalloc((void**)&tensuu_d,sizeof(int));
     cudaMemcpy(tensuu_d,&tensuu,sizeof(int),cudaMemcpyHostToDevice);
-
     int *x_d,*y_d;
     double *z_d;
     double *img_buf_d;
-
     dim3 blocks(1024,1,1);
     dim3 threads(1024,1,1);
-
     int x_buf,y_buf,z_buf;
 
     for(i=0;i<tensuu;i++){
@@ -141,39 +133,26 @@ int main(){
       z[i]=((double)z_buf)*40+100000.0;
     }
     fclose(fp);
-
-
     cudaMalloc((void**)&x_d,tensuu*sizeof(int));
     cudaMalloc((void**)&y_d,tensuu*sizeof(int));
     cudaMalloc((void**)&z_d,tensuu*sizeof(double));
-
     cudaMalloc((void**)&img_buf_d,WID*HEI*sizeof(double));
-
     double *img_buf;
-
     img_buf=(double *)malloc(sizeof(double)*WID*HEI);
     for(i=0;i<WID*HEI;i++){
       img_buf[i]=0.0;
     }
-
     cudaMemcpy(x_d,x,tensuu*sizeof(int),cudaMemcpyHostToDevice);
     cudaMemcpy(y_d,y,tensuu*sizeof(int),cudaMemcpyHostToDevice);
     cudaMemcpy(z_d,z,tensuu*sizeof(double),cudaMemcpyHostToDevice);
-
     cudaMemcpy(img_buf_d,img_buf,WID*HEI*sizeof(double),cudaMemcpyHostToDevice);
 
     distance_gpu<<<blocks,threads>>>(x_d,y_d,z_d,img_buf_d,tensuu_d);
-
     cudaMemcpy(img_buf,img_buf_d,WID*HEI*sizeof(double),cudaMemcpyDeviceToHost);
 
-
-
-
     double min,max,mid;
-
     min=img_buf[0];
     max=img_buf[0];
-
     for(i=0;i<HEI;i++){
       for(j=0;j<WID;j++){
         if(min>img_buf[i*WID+j]){
@@ -184,11 +163,8 @@ int main(){
         }
       }
     }
-
     mid=0.5*(min+max);
-
     printf("min = %lf  max = %lf  mid = %lf\n",min,max,mid);
-
 
     unsigned char *img;
     img=(unsigned char *)malloc(sizeof(unsigned char)*WID*HEI);

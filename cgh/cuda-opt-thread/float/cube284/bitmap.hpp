@@ -40,16 +40,17 @@ class Bitmap {
          RGBQUAD          bmiColors[1];
       }BITMAPINFO;
       int _w,_h;
-      BITMAPFILEHEADER    BmpFileHeader;
-      BITMAPINFOHEADER    BmpInfoHeader;
-      RGBQUAD             RGBQuad[256];
+      BITMAPFILEHEADER BmpFileHeader;
+      BITMAPINFOHEADER BmpInfoHeader;
+      RGBQUAD  RGBQuad[256];
+
       void headerWrite(FILE *_fp) {
-         fwrite(&BmpFileHeader, sizeof(BmpFileHeader) , 1 ,_fp);
+         fwrite(&BmpFileHeader, sizeof(BmpFileHeader), 1,_fp);
          fwrite(&BmpInfoHeader, sizeof(BmpInfoHeader) , 1 ,_fp);
          fwrite(&RGBQuad[0], sizeof(RGBQuad[0]) , 256 ,_fp);
       }
-   public:
-      Bitmap(int _width, int _height) {
+   public :
+      Bitmap (int _width, int _height) {
          _w = _width;
          _h = _height;
          BmpFileHeader.bfType                =19778;
