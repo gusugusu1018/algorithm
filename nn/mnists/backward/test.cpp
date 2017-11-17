@@ -88,12 +88,12 @@ int main(){
 		a3[i] = 0.0f;
 	}
 
-	int epoch = 1;
-	for (int k=0;k<epoch;k++) {
+	int epoch = 100;
+	for (int counter=0;counter<epoch;counter++) {
 		//*************************forward****************************
 		// standlize
 		for (int j=0;j<28*28;j++) {
-			data[j] = train_data[k][j]/255;
+			data[j] = train_data[counter][j]/255;
 		}
 
 		// H1 perseptron 1024kai
@@ -156,7 +156,7 @@ int main(){
 		// if (label==9) teacher_buf={0,0,0,0,0,0,0,0,0,1};
 		float teacher_buf[10];
 		for (int i=0;i<10;i++) {
-			if (label_data[k] == i) {
+			if (label_data[counter] == i) {
 				teacher_buf[i]=1;
 			} else {
 				teacher_buf[i]=0;
@@ -167,10 +167,10 @@ int main(){
 		float cost = 0.0f;
 		// cross entropy error
 		for (int i=0;i<10;i++) {
-			//cost += -teacher_buf[i]*std::log(a3[i]+1e-8);//overflow avoidance
-			cost += -teacher_buf[i]*std::log(a3[i]);
+			cost += -teacher_buf[i]*std::log(a3[i]+1e-8);//overflow avoidance
+			//cost += -teacher_buf[i]*std::log(a3[i]);
 		}
-		std::cout<<k<<" epoch, cost "<<cost<<std::endl;
+		std::cout<<counter<<" epoch, cost "<<cost<<std::endl;
 
 		//*************************backward****************************
 		// 23
@@ -204,7 +204,7 @@ int main(){
 		// w23
 		for (int i=0;i<N_H2;i++) {
 			for (int j=0;j<N_OUTPUT;j++) {
-				w23[i][j] = w23[i][j] - eta*delta_23[j]*a2[j];
+				w23[i][j] = w23[i][j] - eta*delta_23[j]*a2[i];
 			}
 		}
 		// b3
@@ -214,7 +214,7 @@ int main(){
 		// w12
 		for (int i=0;i<N_H1;i++) {
 			for (int j=0;j<N_H2;j++) {
-				w12[i][j] = w12[i][j] - eta*delta_12[j]*a1[j];
+				w12[i][j] = w12[i][j] - eta*delta_12[j]*a1[i];
 			}
 		}
 		// b2
@@ -224,7 +224,7 @@ int main(){
 		// w01
 		for (int i=0;i<N_INPUT;i++) {
 			for (int j=0;j<N_H1;j++) {
-				w01[i][j] = w01[i][j] - eta*delta_01[j]*data[j];
+				w01[i][j] = w01[i][j] - eta*delta_01[j]*data[i];
 			}
 		}
 		// b1
