@@ -126,7 +126,7 @@ int main(){
 			a2[j]=relu(z2[j]);
 		}
 
-		// H3 perseptron 10kai
+		// OUTPUT layer
 		for (int j=0;j<N_OUTPUT;j++) {
 			// perseptron 1024->1
 			z3[j] = 0.0f;
@@ -138,7 +138,6 @@ int main(){
 			z3[j]+=b3[j];
 		}
 
-		// OUTPUT layer
 		// activation function
 		// softmax
 		max = 0.0f;

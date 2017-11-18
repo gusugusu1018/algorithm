@@ -2,6 +2,14 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <cstdio>
+
+#define N_INPUT 784
+#define N_H1	1024
+#define N_H2	1024
+#define N_OUTPUT	10
+#define MAX_FILENAME	30
+
 #include "mnist.h"
 #include "util.h"
 
@@ -17,7 +25,7 @@ int main(){
 	int epoch = 60400;
 	float eta = 0.1f;
 
-	std::cout << "init dataset..." << std::endl;
+	printf("init dataset...\n");
 	std::vector<std::vector<float> > train_data;
 	std::vector<float> label_data;
 	Mnist mnist;
@@ -72,8 +80,12 @@ int main(){
 	for (int i=0;i<N_OUTPUT;i++) {
 		b3[i] = -1.0f;
 	}
+	char filename[MAX_FILENAME]={"initial.weights"};
+	printf("write\n");
+	write_weights(filename,w01,b1,w12,b2,w23,b3);
 
-	write_weights(w01,b1,w12,b2,w23,b3);
+	printf("get\n");
+	get_weights(filename,w01,b1,w12,b2,w23,b3);
 
 	return 0;
 }
