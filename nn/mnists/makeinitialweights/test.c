@@ -36,28 +36,29 @@ int main(){
 	//****************initialize weight and bias*******************
 	float mu=0.0f;
 	float sigma;
-	for (int i=0;i<N_INPUT;i++) {
-		for (int j=0;j<N_H1;j++)
+	int i,j;
+	for (i=0;i<N_INPUT;i++) {
+		for (j=0;j<N_H1;j++)
 			sigma = sqrt(2/N_H1);
 			w01[i][j] = rand_normal(mu,sigma);
 	}
-	for (int i=0;i<N_H1;i++) {
+	for (i=0;i<N_H1;i++) {
 		b1[i] = 0.0f;
 	}
-	for (int i=0;i<N_H1;i++) {
-		for (int j=0;j<N_H2;j++)
+	for (i=0;i<N_H1;i++) {
+		for (j=0;j<N_H2;j++)
 			sigma = sqrt(2/N_H2);
 			w12[i][j] = rand_normal(mu,sigma);
 	}
-	for (int i=0;i<N_H2;i++) {
+	for (i=0;i<N_H2;i++) {
 		b2[i] = 0.0f;
 	}
-	for (int i=0;i<N_H2;i++) {
-		for (int j=0;j<N_OUTPUT;j++)
+	for (i=0;i<N_H2;i++) {
+		for (j=0;j<N_OUTPUT;j++)
 			sigma = sqrt(2/N_OUTPUT);
 			w23[i][j] = rand_normal(mu,sigma);
 	}
-	for (int i=0;i<N_OUTPUT;i++) {
+	for (i=0;i<N_OUTPUT;i++) {
 		b3[i] = 0.0f;
 	}
 

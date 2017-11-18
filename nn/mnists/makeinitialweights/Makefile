@@ -1,4 +1,4 @@
 all:
-	g++ test.cpp -o test.out -O3 -fopenmp
+	gcc test.c -o test.out -O3 -lm
 clean:
 	rm test.out
