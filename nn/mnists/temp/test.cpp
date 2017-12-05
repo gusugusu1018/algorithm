@@ -1,6 +1,7 @@
 #include <list>
 #include <vector>
 #include <iostream>
+#include <cstdio>
 #include <cmath>
 
 #define N_INPUT 784
@@ -20,7 +21,8 @@ float diff_relu(float a) {
 	return a > 0.0f ? 1.0f:0.0f;
 }
 
-float fprop(	float data[N_INPUT],
+float fprop(	int counter,
+		float data[N_INPUT],
 		float w01[N_INPUT][N_H1],
 		float b1[N_H1],
 		float z1[N_H1],
@@ -34,7 +36,7 @@ float fprop(	float data[N_INPUT],
 		float z3[N_OUTPUT],
 		float a3[N_OUTPUT],
 		float teacher_buf[N_OUTPUT]
-	  );
+	   );
 
 void update_weights(float w01[N_INPUT][N_H1],
 		float Delta_w01[N_INPUT][N_H1],
@@ -48,9 +50,10 @@ void update_weights(float w01[N_INPUT][N_H1],
 		float Delta_w23[N_H1][N_OUTPUT],
 		float b3[N_OUTPUT],
 		float Delta_b3[N_OUTPUT]
-	  );
+		);
 
-void bprop(	float data[N_INPUT],
+void bprop(	int counter,
+		float data[N_INPUT],
 		float w01[N_INPUT][N_H1],
 		float b1[N_H1],
 		float z1[N_H1],
@@ -97,7 +100,7 @@ int main(){
 	float teacher_buf[N_OUTPUT];
 	float cost = 0.0f;
 
-	printf("init dataset...\n");
+	//	printf("init dataset...\n");
 	Mnist mnist;
 	train_data = mnist.readTrainingFile("../data/train-images-idx3-ubyte");
 	label_data = mnist.readLabelFile("../data/train-labels-idx1-ubyte");
@@ -129,13 +132,107 @@ int main(){
 				teacher_buf[i]=0;
 			}
 		}
-		bprop(data,w01,b1,z1,a1,delta_1,w12,b2,a2,z2,delta_2,w23,b3,z3,a3,delta_3,teacher_buf);
+		int batch_size = 1;
+
+		float Delta_w01[N_INPUT][N_H1];
+		float Delta_b1[N_H1];
+		float Delta_w12[N_H1][N_H2];
+		float Delta_b2[N_H2];
+		float Delta_w23[N_H1][N_OUTPUT];
+		float Delta_b3[N_OUTPUT];
+		// w23
+		for (int i=0;i<N_H2;i++) {
+			for (int j=0;j<N_OUTPUT;j++) {
+				Delta_w23[i][j] = 0.0f;
+			}
+		}
+		// b3
+		for (int j=0;j<N_OUTPUT;j++) {
+			Delta_b3[j] = 0.0f;
+		}
+		// w12
+		for (int i=0;i<N_H1;i++) {
+			for (int j=0;j<N_H2;j++) {
+				Delta_w12[i][j] = 0.0f;
+			}
+		}
+		// b2
+		for (int j=0;j<N_H2;j++) {
+			Delta_b2[j] = 0.0f;
+
+		}
+		// w01
+		for (int i=0;i<N_INPUT;i++) {
+			for (int j=0;j<N_H1;j++) {
+				Delta_w01[i][j] = 0.0f;
+			}
+		}
+		// b1
+		for (int j=0;j<N_H1;j++) {
+			Delta_b1[j] = 0.0f;
+		}
+
+		for (int counter=0;counter<batch_size;counter++) {
+			float cost = fprop(counter,data,w01,b1,z1,a1,w12,b2,a2,z2,w23,b3,z3,a3,teacher_buf);
+			//*************************backward****************************
+			// 3
+			for (int k=0;k<N_OUTPUT;k++) {
+				delta_3[k]=(a3[k]-teacher_buf[k]);
+			}
+			// 2
+			for (int j=0;j<N_H2;j++) {
+				delta_2[j]=0.0f;
+				for (int k=0;k<N_OUTPUT;k++) {
+					delta_2[j]+=delta_3[k]*w23[j][k]*diff_relu(z2[j]);
+				}
+			}
+			// 1
+			for (int j=0;j<N_H1;j++) {
+				delta_1[j]=0.0f;
+				for (int k=0;k<N_H2;k++) {
+					delta_1[j]+=delta_2[k]*w12[j][k]*diff_relu(z1[j]);
+				}
+			}
+			//*************************batch****************************
+			// w23
+			for (int i=0;i<N_H2;i++) {
+				for (int j=0;j<N_OUTPUT;j++) {
+					Delta_w23[i][j] += delta_3[j]*a2[i];
+				}
+			}
+			// b3
+			for (int j=0;j<N_OUTPUT;j++) {
+				Delta_b3[j] += delta_3[j];
+			}
+			// w12
+			for (int i=0;i<N_H1;i++) {
+				for (int j=0;j<N_H2;j++) {
+					Delta_w12[i][j] += delta_2[j]*a1[i];
+				}
+			}
+			// b2
+			for (int j=0;j<N_H2;j++) {
+				Delta_b2[j] += delta_2[j];
+			}
+			// w01
+			for (int i=0;i<N_INPUT;i++) {
+				for (int j=0;j<N_H1;j++) {
+					Delta_w01[i][j] += delta_1[j]*data[i];
+				}
+			}
+			// b1
+			for (int j=0;j<N_H1;j++) {
+				Delta_b1[j] += delta_1[j];
+			}
+		}
+		update_weights(w01,Delta_w01,b1,Delta_b1,w12,Delta_w12,b2,Delta_b2,w23,Delta_w23,b3,Delta_b3);
 	}
 	write_weights(save_file,w01,b1,w12,b2,w23,b3);
 	return 0;
 }
 
-float fprop(	float data[N_INPUT],
+float fprop(	int counter,
+		float data[N_INPUT],
 		float w01[N_INPUT][N_H1],
 		float b1[N_H1],
 		float z1[N_H1],
@@ -149,7 +246,7 @@ float fprop(	float data[N_INPUT],
 		float z3[N_OUTPUT],
 		float a3[N_OUTPUT],
 		float teacher_buf[N_OUTPUT]
-	  ) {
+	   ) {
 	// H1 perseptron 1024kai
 	for (int j=0;j<N_H1;j++) {
 		// perseptron 784->1
@@ -235,7 +332,7 @@ void update_weights(float w01[N_INPUT][N_H1],
 		float Delta_w23[N_H1][N_OUTPUT],
 		float b3[N_OUTPUT],
 		float Delta_b3[N_OUTPUT]
-	  ) {
+		) {
 	float eta = 0.1f;
 	//*************************update weight and bias****************************
 	// w23
@@ -276,7 +373,8 @@ void update_weights(float w01[N_INPUT][N_H1],
 	}
 }
 
-void bprop(	float data[N_INPUT],
+void bprop(	int counter,
+		float data[N_INPUT],
 		float w01[N_INPUT][N_H1],
 		float b1[N_H1],
 		float z1[N_H1],
@@ -294,98 +392,4 @@ void bprop(	float data[N_INPUT],
 		float delta_3[N_OUTPUT],
 		float teacher_buf[N_OUTPUT]
 	  ){
-	int batch_size = 10;
-
-	float Delta_w01[N_INPUT][N_H1];
-	float Delta_b1[N_H1];
-	float Delta_w12[N_H1][N_H2];
-	float Delta_b2[N_H2];
-	float Delta_w23[N_H1][N_OUTPUT];
-	float Delta_b3[N_OUTPUT];
-	// w23
-	for (int i=0;i<N_H2;i++) {
-		for (int j=0;j<N_OUTPUT;j++) {
-			Delta_w23[i][j] = 0.0f;
-		}
-	}
-	// b3
-	for (int j=0;j<N_OUTPUT;j++) {
-		Delta_b3[j] = 0.0f;
-	}
-	// w12
-	for (int i=0;i<N_H1;i++) {
-		for (int j=0;j<N_H2;j++) {
-			Delta_w12[i][j] = 0.0f;
-		}
-	}
-	// b2
-	for (int j=0;j<N_H2;j++) {
-		Delta_b2[j] = 0.0f;
-
-	}
-	// w01
-	for (int i=0;i<N_INPUT;i++) {
-		for (int j=0;j<N_H1;j++) {
-			Delta_w01[i][j] = 0.0f;
-		}
-	}
-	// b1
-	for (int j=0;j<N_H1;j++) {
-		Delta_b1[j] = 0.0f;
-	}
-
-	for (int counter=0;counter<batch_size;counter++) {
-		float cost = fprop(data,w01,b1,z1,a1,w12,b2,a2,z2,w23,b3,z3,a3,teacher_buf);
-		//*************************backward****************************
-		// 3
-		for (int k=0;k<N_OUTPUT;k++) {
-			delta_3[k]=(a3[k]-teacher_buf[k]);
-		}
-		// 2
-		for (int j=0;j<N_H2;j++) {
-			delta_2[j]=0.0f;
-			for (int k=0;k<N_OUTPUT;k++) {
-				delta_2[j]+=delta_3[k]*w23[j][k]*diff_relu(z2[j]);
-			}
-		}
-		// 1
-		for (int j=0;j<N_H1;j++) {
-			delta_1[j]=0.0f;
-			for (int k=0;k<N_H2;k++) {
-				delta_1[j]+=delta_2[k]*w12[j][k]*diff_relu(z1[j]);
-			}
-		}
-		//*************************batch****************************
-		// w23
-		for (int i=0;i<N_H2;i++) {
-			for (int j=0;j<N_OUTPUT;j++) {
-				Delta_w23[i][j] += delta_3[j]*a2[i];
-			}
-		}
-		// b3
-		for (int j=0;j<N_OUTPUT;j++) {
-			Delta_b3[j] += delta_3[j];
-		}
-		// w12
-		for (int i=0;i<N_H1;i++) {
-			for (int j=0;j<N_H2;j++) {
-				Delta_w12[i][j] += delta_2[j]*a1[i];
-			}
-		}
-		// b2
-		for (int j=0;j<N_H2;j++) {
-			Delta_b2[j] += delta_2[j];
-		}
-		// w01
-		for (int i=0;i<N_INPUT;i++) {
-			for (int j=0;j<N_H1;j++) {
-				Delta_w01[i][j] += delta_1[j]*data[i];
-			}
-		}
-		// b1
-		for (int j=0;j<N_H1;j++) {
-			Delta_b1[j] += delta_1[j];
-		}
-	}
-	update_weights(w01,Delta_w01,b1,Delta_b1,w12,Delta_w12,b2,Delta_b2,w23,Delta_w23,b3,Delta_b3);
 }
