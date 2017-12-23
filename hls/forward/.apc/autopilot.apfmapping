@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="forward.cpp" path="C:\vivado-work\forward\forward.cpp"/>
+    <originFiles name="network.hpp" path="C:\vivado-work\forward\network.hpp"/>
+  </source>
+  <testbench>
+    <originFiles name="forward_tb.cpp" path="C:\vivado-work\forward\forward_tb.cpp"/>
+    <originFiles name="mnist.h" path="C:\vivado-work\forward\mnist.h"/>
+    <originFiles name="new.weights" path="C:\vivado-work\forward\new.weights"/>
+    <originFiles name="train-images-idx3-ubyte" path="C:\vivado-work\forward\train-images-idx3-ubyte"/>
+    <originFiles name="train-labels-idx1-ubyte" path="C:\vivado-work\forward\train-labels-idx1-ubyte"/>
+    <originFiles name="weights.h" path="C:\vivado-work\forward\weights.h"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>
